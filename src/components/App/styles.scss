@@ -4,9 +4,16 @@ body{
 .app {
   width: 900px;
   margin: 1em auto;
-  padding: 10px;
+  padding: 50px;
   text-align: center;
   background-color: rgb(226, 226, 226);
+  .header-input{
+  width: 100%;
+  }
+  .count{
+    text-align: left;
+  }
 }
+
 
 

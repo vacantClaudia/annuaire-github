@@ -3,7 +3,7 @@ import { Message } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 const Main = ({ count }) => (
-  <Message>
+  <Message className="count">
     <p>
       La recherche a donné {count} résultats
     </p>

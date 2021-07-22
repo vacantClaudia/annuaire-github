@@ -4,20 +4,22 @@ import PropTypes from 'prop-types';
 
 const SearchBar = ({ inputSearch, setInputSearch, handleSubmit }) => (
   <div>
-    <Icon name="github" size="large" />
-    <h1 className="title">Github</h1>
+    <h1 className="title"><Icon name="github" size="large" />Github</h1>
     <form onSubmit={handleSubmit}>
-      <Input
-        size="large"
-        placeholder="Search..."
-        type="text"
-        className="header-input"
-        onChange={(event) => {
-          setInputSearch(event.currentTarget.value);
-        }}
-        value={inputSearch}
-      />
+      <Input icon placeholder="Search..." iconPosition="left" className="header-input">
+        <input
+          size="large"
+          type="text"
+          className="header-input"
+          onChange={(event) => {
+            setInputSearch(event.currentTarget.value);
+          }}
+          value={inputSearch}
+        />
+        <Icon name="search" />
+      </Input>
     </form>
+
   </div>
 );
 SearchBar.propTypes = {
