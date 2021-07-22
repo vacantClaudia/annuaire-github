@@ -1,12 +1,15 @@
 import React from 'react';
 import { Message } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 
-const Main = () => (
+const Main = ({ count }) => (
   <Message>
     <p>
-      La recherche a donné xxxx résultats
+      La recherche a donné {count} résultats
     </p>
   </Message>
 );
-
+Main.propTypes = {
+  count: PropTypes.number.isRequired
+};
 export default Main;

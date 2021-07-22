@@ -19,12 +19,6 @@ const App = () => {
 
   const [load ,setLoad ] = useState(false);
 
-  const handleSubmit = (event) => {
-    console.log('submit ok');
-    event.preventDefault();
-    loadRepos();
-  };
-
   const loadRepos = () => {
     // https://api.github.com/search/repositories?q=REPOACHERCHER
     axios.get(`https://api.github.com/search/repositories?q=${inputSearch}`)
@@ -39,7 +33,11 @@ const App = () => {
       .finally(() => {
       });
   };
-
+  const handleSubmit = (event) => {
+    console.log('submit ok');
+    event.preventDefault();
+    loadRepos();
+  };
 
   return (
     <div className="app">
@@ -48,7 +46,7 @@ const App = () => {
         setInputSearch={setInputSearch}
         handleSubmit={handleSubmit}
       />
-      {load && (<Main />)}
+      {load && (<Main count={repos.length} />)}
       <Results repos={repos} />
     </div>
   );
