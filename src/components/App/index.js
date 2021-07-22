@@ -17,11 +17,18 @@ const App = () => {
   // state pour récupérer l'entrée de mon input
   const [inputSearch, setInputSearch] = useState('');
 
+  const handleSubmit = (event) => {
+    console.log('submit ok');
+    event.preventDefault();
+    loadRepos();
+  };
+
   const loadRepos = () => {
     // https://api.github.com/search/repositories?q=REPOACHERCHER
-    axios.get('https://api.github.com/search/repositories?q=REPOACHERCHER')
+    axios.get(`https://api.github.com/search/repositories?q=${inputSearch}`)
       .then((response) => {
-        console.log(response);
+        console.log(response.data.items);
+        setRepos(response.data.items);
       })
       .catch((error) => {
       })
@@ -31,9 +38,13 @@ const App = () => {
 
   return (
     <div className="app">
-      <SearchBar inputSearch={inputSearch} setInputSearch={setInputSearch} />
+      <SearchBar
+        inputSearch={inputSearch}
+        setInputSearch={setInputSearch}
+        handleSubmit={handleSubmit}
+      />
       <Main />
-      <Results />
+      <Results repos={repos} />
     </div>
   );
 };

@@ -1,26 +1,27 @@
 import React from 'react';
-import { Card, Icon, Image } from 'semantic-ui-react';
+import { Card, Image } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 
-const Cards = () => (
+const Cards = ({ id, name, full_name, description }) => (
   <Card>
     <Image src="" wrapped ui={false} />
     <Card.Content>
-      <Card.Header>Matthew</Card.Header>
+      <Card.Header>{name}</Card.Header>
       <Card.Meta>
-        <span className="date">Joined in 2015</span>
+        {full_name}
       </Card.Meta>
       <Card.Description>
-        Matthew is a musician living in Nashville.
+        {description}
       </Card.Description>
-    </Card.Content>
-    <Card.Content extra>
-      <a>
-        <Icon name="user" />
-        22 Friends
-      </a>
     </Card.Content>
   </Card>
 
 );
+Cards.propTypes = {
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  full_name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+};
 
 export default Cards;
