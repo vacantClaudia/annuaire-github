@@ -12,10 +12,12 @@ import './styles.css';
 // == Composant
 const App = () => {
   // state pour récupérer les repos de ma requête
-  const [repos, setRepos ] = useState([]);
+  const [repos, setRepos] = useState([]);
 
   // state pour récupérer l'entrée de mon input
   const [inputSearch, setInputSearch] = useState('');
+
+  const [load ,setLoad ] = useState(false);
 
   const handleSubmit = (event) => {
     console.log('submit ok');
@@ -29,12 +31,15 @@ const App = () => {
       .then((response) => {
         console.log(response.data.items);
         setRepos(response.data.items);
+        setLoad(true);
       })
       .catch((error) => {
+        setLoad(false);
       })
       .finally(() => {
       });
   };
+
 
   return (
     <div className="app">
@@ -43,7 +48,7 @@ const App = () => {
         setInputSearch={setInputSearch}
         handleSubmit={handleSubmit}
       />
-      <Main />
+      {load && (<Main />)}
       <Results repos={repos} />
     </div>
   );
