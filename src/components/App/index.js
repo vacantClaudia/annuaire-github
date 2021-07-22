@@ -1,7 +1,7 @@
 // == Import npm
 import React from 'react';
 import SearchBar from 'src/components/SearchBar';
-import Message from 'src/components/Message';
+import Main from 'src/components/Main';
 import Results from 'src/components/Results';
 // == Import
 import './styles.css';
@@ -10,7 +10,7 @@ import './styles.css';
 const App = () => (
   <div className="app">
     <SearchBar />
-    <Message />
+    <Main />
     <Results />
   </div>
 );
