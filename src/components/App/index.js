@@ -1,13 +1,17 @@
 // == Import npm
 import React from 'react';
-
+import SearchBar from 'src/components/SearchBar';
+import Message from 'src/components/Message';
+import Results from 'src/components/Results';
 // == Import
 import './styles.css';
 
 // == Composant
 const App = () => (
   <div className="app">
-    <h1>Composant : App</h1>
+    <SearchBar />
+    <Message />
+    <Results />
   </div>
 );
 
