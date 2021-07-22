@@ -1,19 +1,42 @@
 // == Import npm
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
+
 import SearchBar from 'src/components/SearchBar';
 import Main from 'src/components/Main';
 import Results from 'src/components/Results';
+
 // == Import
 import './styles.css';
 
 // == Composant
-const App = () => (
-  <div className="app">
-    <SearchBar />
-    <Main />
-    <Results />
-  </div>
-);
+const App = () => {
+  // state pour récupérer les repos de ma requête
+  const [repos, setRepos ] = useState([]);
+
+  // state pour récupérer l'entrée de mon input
+  const [inputSearch, setInputSearch] = useState('');
+
+  const loadRepos = () => {
+    // https://api.github.com/search/repositories?q=REPOACHERCHER
+    axios.get('https://api.github.com/search/repositories?q=REPOACHERCHER')
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+      })
+      .finally(() => {
+      });
+  };
+
+  return (
+    <div className="app">
+      <SearchBar inputSearch={inputSearch} setInputSearch={setInputSearch} />
+      <Main />
+      <Results />
+    </div>
+  );
+};
 
 // == Export
 export default App;
