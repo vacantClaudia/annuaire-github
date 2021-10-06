@@ -13,8 +13,6 @@ import './styles.scss';
 const App = () => {
   // state pour récupérer les repos de ma requête
   const [repos, setRepos] = useState([]);
-  // state pour récupérer et affiches les images
-  const [avatar, setAvatar] = useState([]);
   // state pour récupérer l'entrée de mon input
   const [inputSearch, setInputSearch] = useState('');
 
@@ -26,7 +24,6 @@ const App = () => {
       .then((response) => {
         console.log(response.data.items);
         setRepos(response.data.items);
-        setAvatar(response.data.items.owner);
         setLoad(true);
       })
       .catch((error) => {
@@ -40,7 +37,6 @@ const App = () => {
     console.log('submit ok');
     event.preventDefault();
     loadRepos();
-    loadAvatar();
   };
 
   return (

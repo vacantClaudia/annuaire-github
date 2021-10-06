@@ -20,8 +20,6 @@ Results.propTypes = {
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
-      full_name: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
     }).isRequired,
   ).isRequired,
 };
