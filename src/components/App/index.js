@@ -1,6 +1,7 @@
 // == Import npm
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Dimmer, Loader } from 'semantic-ui-react';
 
 import SearchBar from 'src/components/SearchBar';
 import Main from 'src/components/Main';
@@ -18,7 +19,10 @@ const App = () => {
 
   const [load, setLoad] = useState(false);
 
+  const [loading, setLoading] = useState(false);
+
   const loadRepos = () => {
+    setLoading(true);
     // https://api.github.com/search/repositories?q=REPOACHERCHER
     axios.get(`https://api.github.com/search/repositories?q=${inputSearch}`)
       .then((response) => {
@@ -28,8 +32,11 @@ const App = () => {
       })
       .catch((error) => {
         setLoad(false);
+        // todo afficher un message d erreur pour l'utilisateur
       })
       .finally(() => {
+        setLoad(false);
+        setLoading(false);
       });
   };
 
@@ -46,6 +53,11 @@ const App = () => {
         setInputSearch={setInputSearch}
         handleSubmit={handleSubmit}
       />
+      {loading && (
+        <Dimmer active>
+          <Loader>Récupération des résultats</Loader>
+        </Dimmer>
+      )}
       {load && (<Main count={repos.length} />)}
       <Results repos={repos} />
     </div>
